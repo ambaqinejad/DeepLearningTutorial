@@ -115,3 +115,23 @@ print(x.mean())
 # Positional min/max
 print(x.argmax())
 print(x.argmin())
+print("------------------------")
+
+# Reshaping, stacking, squeezing and unsqueezing
+x = torch.tensor([[1, 2, 3], [4, 5, 6]])
+print(x.shape)
+print(x.reshape(3, 2))
+y = torch.tensor([1, 2, 3])
+z = torch.stack([y, y, y, y], 0)
+print(z)
+z = torch.stack([y, y, y, y], 1)
+print(z)
+
+a = torch.rand(size=(1, 5, 1))
+print(a)
+print(torch.squeeze(a, 0))
+
+b = torch.rand(size=[4])
+print(b)
+print(torch.unsqueeze(b, dim=0))
+print(torch.unsqueeze(b, dim=1))
