@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 
 # scalar tensor
 scalar = torch.tensor(2)
@@ -135,3 +136,51 @@ b = torch.rand(size=[4])
 print(b)
 print(torch.unsqueeze(b, dim=0))
 print(torch.unsqueeze(b, dim=1))
+
+print("------------------------")
+
+# Indexing
+a = torch.arange(1, 10, 1).reshape(1, 3, 3)
+print(a)
+print(a[0])
+print(a[0][0])
+print(a[0][0][0])
+
+a = torch.stack([a, a], 0)
+print(a)
+
+print(a[:, 0])
+print(a[:, :, 1])
+
+print("------------------------")
+# PyTorch's tensors & NumPy
+array = np.arange(1, 8)
+print(array)
+tensor = torch.from_numpy(array).type(torch.float32)
+print(tensor)
+a = torch.Tensor.numpy(tensor)
+print(a)
+print("------------------------")
+
+# Reproducibility
+RANDOM_SEED =42
+torch.manual_seed(seed=RANDOM_SEED)
+tensor1 = torch.rand(3, 4)
+
+torch.manual_seed(seed=RANDOM_SEED)
+tensor2 = torch.rand(3, 4)
+print(tensor1)
+print(tensor2)
+print("------------------------")
+
+# Using GPU
+print ("GPU") if torch.cuda.is_available() else print("CPU")
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(torch.cuda.device_count())
+a = torch.rand(1, 5)
+print(a, a.device)
+a = a.to(device)
+print(a, a.device)
+
+# print(torch.Tensor.numpy(a))  // ERROR
+print(a.cpu().numpy())
