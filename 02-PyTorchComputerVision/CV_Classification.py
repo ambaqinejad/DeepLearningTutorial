@@ -12,7 +12,7 @@ train_data = datasets.FashionMNIST(
     root="data",
     train=True,
     download=True,
-    transform=ToTensor,
+    transform=ToTensor(),
     target_transform=None
 )
 
@@ -20,5 +20,14 @@ test_data = datasets.FashionMNIST(
     root="data",
     train=False,
     download=True,
-    transform=ToTensor
+    transform=ToTensor()
 )
+
+image, label = train_data[0]
+
+# print(train_data[0])
+print(1)
+print(image.shape)
+plt.imshow(image.squeeze())
+plt.title(label)
+plt.show()
