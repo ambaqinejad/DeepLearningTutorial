@@ -35,7 +35,7 @@ model = nn.Sequential(
 loss_fn = nn.L1Loss()
 optimizer = torch.optim.SGD(model.parameters(), lr=.01)
 torch.manual_seed(42)
-epochs = 200000
+epochs = 10000
 for epoch in range(epochs):
     model.train()
     y_pred = model(X_train)

@@ -31,3 +31,23 @@ def compute_output(w, x):
         return -1
     else:
         return 1
+
+all_correct = False
+
+while not all_correct:
+    random.shuffle(index_list)
+    all_correct = True
+    for i in index_list:
+        x = x_train[i]
+        y = y_train[i]
+        p_out = compute_output(w, x)
+        if p_out != y:
+            all_correct = False
+            for j in range(len(w)):
+                w[j] += y * LEARNING_RATE * x[j]
+            show_learning(w)
+
+print('y0_turth =', '%5.2f' % y_train[0], ', y0 =', '%5.2f' % compute_output(w, x_train[0]))
+print('y1_turth =', '%5.2f' % y_train[1], ', y0 =', '%5.2f' % compute_output(w, x_train[1]))
+print('y2_turth =', '%5.2f' % y_train[2], ', y0 =', '%5.2f' % compute_output(w, x_train[2]))
+print('y3_turth =', '%5.2f' % y_train[3], ', y0 =', '%5.2f' % compute_output(w, x_train[3]))
